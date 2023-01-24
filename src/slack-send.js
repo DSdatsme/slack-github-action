@@ -39,7 +39,7 @@ module.exports = async function slackSend(core) {
       try {
         payload = await fs.readFile(path.resolve(payloadFilePath), 'utf-8');
         // parse github context variables
-        const context = { github: github.context };
+        const context = { github: github.context, env: process.env };
         const payloadString = payload.replace('$', '');
         payload = markup.up(payloadString, context);
       } catch (error) {
